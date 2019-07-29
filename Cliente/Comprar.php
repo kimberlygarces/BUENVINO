@@ -54,9 +54,7 @@
 
       <div id="Mostrar"class="row align-items-start">
 
-      <div class="col-sm-12 col-lg-4">
-
-
+      <div class="col-sm-12 col-lg-8">
 
       <?php
 
@@ -67,6 +65,9 @@
       $productos = $d->getProductos();
 
               session_start();
+              echo "<pre>";
+              print_r($_SESSION);
+              echo "</pre>";
               if(isset($_SESSION["carrito"])){
                 $carrito = $_SESSION["carrito"];
              
@@ -82,8 +83,11 @@
                           echo "<td>",'SUBTOTAL',"</td>";
                           "<tr>";
                         
-                          $Iva =.16;
+                          $Iva =0;
                           $total = 0;
+                          $totalpago=0;
+                          $totalC=0;
+
 
                           foreach($carrito as $p){
 
@@ -97,6 +101,8 @@
                               echo "<td>".$p->SubTotal."</td>";
 
                               $total += $p->SubTotal;
+                              $totalC += $p->Cantidad;
+
                               echo "</tr>";
                               }
 
@@ -105,18 +111,65 @@
                                   echo "<td>".$total."</td>";
 
                                   echo "</tr>";
-                      
+                                  echo "<tr>";
+                                  echo "<td colspan='6'>",'IVA',"</td>";
+                                $Iva = $total*0.19;
+                                  echo "<td>".$Iva."</td>";
+                                  echo "</tr>";
+                                  
+                                  echo "<td colspan='5'>",'TOTAL A PAGAR',"</td>";
+                                 $totalpago = $Iva+$total;
+                                    echo "<td>".$totalC."</td>";
+                                    echo "<td>".$totalpago."</td>";
+                                    echo "</tr>";
+                                    
                       echo "</table>";
+                      ?>
+                     </div>
+                      
+
+                      <div class='col-sm-12 col-lg-4'>
+                      <?php
+
+                      echo "<form action='../controller/NuevaCompra.php' method='post'>";
+
+                     echo "<label>Nombre y apellido</label>";
+                      echo "<input class='form-control' type='text' name='Cliente'>";
+
+                      echo "<label>Direccion de Envio</label>";
+                      echo "<input class='form-control' type='text' name='Direccion'>";
+
+                      echo "<label>Tarjeta de Credito</label>";
+                      echo "<input class='form-control' type='text' name='Credito'>";
+           
+                      echo "<input type='hidden' name='txtId' value='$p->Id'>";
+                      echo "<input type='hidden' name='txtMarca' value='$p->Marca'>";
+                      echo "<input type='hidden' name='txtTipo' value='$p->Tipo'>";
+                      echo "<input type='hidden' name='txtClase' value='$p->Clase'>";
+                      echo "<input type='hidden' name='txtPrecio' value='$p->Precio'>";
+                      echo "<input type='hidden' name='txtC' value='$totalC'>";
+                      echo "<input type='hidden' name='txtTotal' value='$totalpago'>";
 
 
-                          
+                              echo "<br>";
+                      echo "<input type='submit' value='Enviar'>";
 
+          
+          
+                        echo "</tr>";
+                       echo "</form>";
+
+                        
               }
               
               ?>
 
+              
 </div>
-</div>
+       </div> 
+       </div> 
+
+
 
 
       <!-- Bootstrap core JavaScript -->

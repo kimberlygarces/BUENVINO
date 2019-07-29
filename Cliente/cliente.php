@@ -80,9 +80,13 @@
                           echo "<td>",'PRECIO',"</td>";
                           echo "<td>",'CANTIDAD',"</td>";
                           echo "<td>",'SUBTOTAL',"</td>";
+                          echo "<td>",'ELIMINAR',"</td>";
+
                           "<tr>";
 
                           $total = 0;
+                          $i = 0;
+
 
                           foreach($carrito as $p){
 
@@ -94,8 +98,13 @@
                               echo "<td>".$p->Precio."</td>";
                               echo "<td>".$p->Cantidad."</td>";
                               echo "<td>".$p->SubTotal."</td>";
+                              echo "<td>";
+                              echo "<a href='../controller/eliminarCarrito.php?in=$i'>",'ELIMINAR',"</a>";
+                              echo"</td>";
+
 
                               $total += $p->SubTotal;
+                              $i++;
                               echo "</tr>";
                               }
 
@@ -216,8 +225,12 @@
               echo "<tr>";
                 echo "<td>","<img src='../img/2.jpg' alt='' class='mr-3 mt-3 rounded-circle' style='width:30px;'>","</td>";
                 echo "<td>".$p->Id."</td>";
+                $imagen='';
+                if($p->oferta=='1'){
+                  $imagen='<img src="img/oferta.png"';
+                }
                 echo "<td>".$p->Tipo."</td>";
-                echo "<td>".$p->Marca."</td>";
+                echo "<td>".$imagen.$p->Marca."</td>";
                 echo "<td>".$p->Clase."</td>";
                 echo "<td>".$p->Precio."</td>";
                 echo "<td>";
