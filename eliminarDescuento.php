@@ -12,7 +12,7 @@
 		mysqli_query($conexion, $sql) or die("ERROR: ".mysqli_error($conexion));	
 	}
 
-	header("Location: ListaVino.php");
+	header("Location: descuento.php");
 	exit;
 	
 ?>

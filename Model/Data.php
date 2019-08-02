@@ -39,6 +39,8 @@ require_once "producto.php";
                     $p->Tipo = $reg[2];
                     $p->Clase = $reg[3];
                     $p->Precio = $reg[5];
+                    $p->Cantidad = $reg[6];
+                    $p->Oferta = $reg[7];
 
                     array_push($productos, $p);
                 }

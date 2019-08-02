@@ -22,6 +22,7 @@
 
   
 
+
 </head>
 
 
@@ -62,26 +63,27 @@
       
         
     <div id="Mostrar"class="row align-items-start">
-  
-<div class="col-sm-12 col-lg-10">
 
-<h2>Productos Disponibles</h2>
+<div class="col-sm-12 col-lg-8">
+
+<h2>Descuento del día</h2>
   <input class="form-control" id="myInput" type="text" placeholder="Buscar">
   <br>
-  <p>Lista de Vinos disponibles en Bodega</p>
+  <p>Selecione oferta del dia</p>
+ 
 
       <table class="table table-striped">
 
 		<thead>
     <th>N</th>
     <th>Id</th>
+    <th></th>
 		<th>Marca</th>
 		<th>Tipo</th>
 		<th>Clase</th>
     <th>Origen</th>
-    <th>Disponibles</th>
     <th>Precio</th>
-    <th></th>
+  
     <th></th>
 
 
@@ -111,19 +113,31 @@
 			$i++;
 			echo '<tr>';
         echo '<td>'.$i.'</td>';
+            
+        if(($registro["Oferta"])=="1"){
+          echo "<td>","<img src='img/sale2.png' alt='' class='mr-3 mt-3 rounded-circle'>","</td>";
+
+        }else{
+          echo "<td>","<img src='img/2.jpg' alt='' class='mr-3 mt-3 rounded-circle' style='width:50px;'>","</td>";
+
+
+        };
         echo '<td>'.$registro["Id"].'</td>';
 				echo '<td>'.$registro["Marca"].'</td>';
 				echo '<td>'.$registro["Tipo"].'</td>';
         echo '<td>'.$registro["Clase"].'</td>';
         echo '<td>'.$registro["Origen"].'</td>';
-        echo '<td>'.$registro["Cantidad"].'</td>';
         echo '<td>'.$registro["Precio"].'</td>';
+
+    
         echo '<td>
-				<a onclick="javascript: return confirm(\'Desea eliminar el registro actual?\')" href="eliminar.php?id='.$registro["Id"].'"><img src="img/eliminar.png"></a>
-                </td>';
-                echo '<td>
-                <a href="editar.php?id='.$registro["Id"].'"><img src="img/editat.png"></a>
-                        </td>';
+               
+        <a href="Oferta.php?id='.$registro["Id"].'" class="btn btn-primary" >Oferta</a>
+
+        </td>';
+                
+     
+
           echo '</tr>';
           
 		}
@@ -134,24 +148,72 @@
 
 
    </div>
+   <div class="col-sm-12 col-lg-1">
+</div>
+   <div class="col-sm-12 col-lg-3">
 
-   <div class="col-sm-12 col-lg-2">
 
-   <a href="NuevoVino.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Nuevo<img src="img/mas.png" alt="" class="mr-7 mt-7 rounded-circle">
-</a>
-   <a href="InfoVentas.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Ventas<img src="img/ventas.png" alt="" class="mr-7 mt-7 rounded-circle" ></a>
-   <a href="InfoCliente.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Clientes<img src="img/clientes.png" alt="" class="mr-7 mt-7 rounded-circle"></a>
-   <a href="descuento.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Oferta<img src="img/sale.png" alt="" class="mr-7 mt-7 rounded-circle"></a>
 
-    <a href="NuevoVino.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Agregar</a>
-    <a href="NuevoVino.php"  class="btn btn-primary btn-xl rounded-pill mt-3" role="button" aria-pressed="true">Agregar</a>
+   <table class="table table-striped">
 
+<thead>
+<th>Id</th>
+<th>Descuento</th>
+<th></th>
+
+
+</thead>
+<tbody>
+
+          <?php
+
+      //Conectarse al servidor mysql
+      $conexion = mysqli_connect("localhost","root","","Buenvino") or die("ERROR: ".mysqli_error($conexion));
+
+      $sql = "SELECT * FROM OfertaDia";
+
+      //EJECUTAR LA CONSULTA
+      $resultado = mysqli_query($conexion, $sql) or die("ERROR: ".mysqli_error($conexion));
+
+      
+
+      if(empty($resultado)){
+
+      echo '<tr><td colspan="3"></td></tr>';
+      }
+      else{
+      while($registro = mysqli_fetch_array($resultado)){
+      $i++;
+      echo '<tr>';
+        echo '<td>'.$registro["Id"].'</td>';
+        echo '<td>'.$registro["Oferta"].'</td>';
+       
+        echo '<td>
+        <a href="eliminarDescuento.php?id='.$registro["Id"].'">Quitar</a>
+
+                </td>';
+        echo '<td>
+              
+        </td>';
+                
+
+
+          echo '</tr>';
+          
+      }
+      }?>
+
+  
 
 </div>
-
 </div>
 
-<script>
+
+
+ 
+    </div>
+
+    <script>
 $(document).ready(function(){
   $("#myInput").on("keyup", function() {
     var value = $(this).val().toLowerCase();
@@ -161,6 +223,7 @@ $(document).ready(function(){
   });
 });
 </script>
+
 
  <!-- Bootstrap core JavaScript -->
  <script src="vendor/jquery/jquery.min.js"></script>

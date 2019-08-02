@@ -62,17 +62,54 @@
 
 
         <div class="container">
-        <div id="Mostrar" class="row align-items-center">
-            	<form action="Oferta2.php" method="post">
-                    
-                <label>Codigo</label>
+        <div id="Mostrar"class="row align-items-start">
+
+
+        <div class="col-sm-12 col-lg-6">
+            	<form action="OfertaDia.php" method="post">
+
+              <label>Codigo</label>
                 <input class="form-control" type="text" name="CodigOfer"  value="<?php echo $registro["Id"];  ?>">
 
                 <label>Precio</label>
-                <input class="form-control" type="text" name="Oferta" value="<?php echo $registro["Precio"]/2;  ?>">
+                <input class="form-control" type="text" name="P_Oferta" value="<?php echo $registro["Precio"]/2;  ?>">
 
-        <input type="submit" value="Enviar">
-    </form>
+                <!--guardar oferta-->
+
+                <input class="form-control" type="hidden" name="Codigo"  value="<?php echo $registro["Id"];  ?>">
+                <input class="form-control" type="hidden" name="Marca" value="<?php echo $registro["Marca"];  ?>">
+                <input class="form-control" type="hidden" name="Tipo" value="<?php echo $registro["Tipo"];  ?>">
+                <input class="form-control" type="hidden" name="Clase" value="<?php echo $registro["Clase"];  ?>">
+                <input class="form-control" type="hidden" name="Precio" value="<?php echo $registro["Precio"];  ?>">
+                <input class="form-control" type="hidden" name="Cantidad" value="<?php echo $registro["Cantidad"];  ?>">
+                <input class="form-control" type="hidden" name="Origen" value="<?php echo $registro["Origen"];  ?>">
+                <br>
+
+
+             <?php 
+             
+             if($registro["Oferta"]=="1"){
+                
+              echo "<input class='form-control' type='hidden' name='Oferta' value='0']>";
+
+              }else{
+                echo "<input class='form-control' type='hidden' name='Oferta' value='1']>";
+              };?>
+
+                      <?php
+            if(($registro["Oferta"])=="1"){
+              echo "<input type='submit' class='btn btn-primary' value='Quitar Oferta'>";
+
+              echo "<img src='img/sale2.png' alt='' class='mr-3 mt-3 rounded-circle'>";
+              }else{
+              echo "<input type='submit' class='btn btn-primary' value='Aplicar Oferta'>";
+
+              };?>
+
+  
+                </div>
+                </div>
+  </form>
     </div>
 
 </body>

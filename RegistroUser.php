@@ -1,3 +1,31 @@
+
+<?php
+
+require 'dataBase.php';
+
+$message = '';
+
+if (!empty($_POST['email']) && !empty($_POST['password'])) {
+  $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->bindParam(':email', $_POST['email']);
+
+  $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+
+  $stmt->bindParam(':password', $password);
+
+
+     
+  if ($stmt->execute()) {
+    $message = 'Usuario Creado';
+  } else {
+    $message = 'Error al crear usuario';
+  }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +52,8 @@
 
 <body>
 
+
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
@@ -43,30 +73,35 @@
     </div>
   </nav>
 
-    
+
+
+
+
+    <?php if(!empty($message)): ?>
+      <p> <?= $message ?></p>
+    <?php endif; ?>
+
     <div class="container">
-        
     <div id="Mostrar" class="row align-items-center">
-        
-    <form class="form-signin" action="ListaVino.php" method="POST">
 
-      <input class="form-control" name="email" type="text" placeholder="Usuario">
-      <br>
-      <input class="form-control" name="password" type="password" placeholder="Contraseña">
-      <br>
-      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Iniciar">
-      <br>
 
-      <!-- <button type="button" class="form-control" class="btn btn-light btn-block" onclick="location='RegistroUser.php'">Nuevo usuario</button>-->
+
+    <form class="form-signin" action="RegistroUser.php" method="POST">
+      <input name="email" class="form-control" type="text" placeholder="Usuario">
+      <br>
+      <input name="password" class="form-control" type="password" placeholder="Contraseña">
+
+      <br>
+      <input type="submit" class="btn btn-lg btn-primary btn-block" value="Registrar Usuario">
+<br>
+
+  <button type="button" class="form-control" class="btn btn-light btn-block" onclick="location='administrador.php'">Iniciar sesion</button>
 
     </form>
+</div>
 
-    <a class="navbar-brand" href="">
- 
-    </div>
+</div>
 
-  </div>
-<br>
 
 <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -74,3 +109,8 @@
 
 </body>
 </html>
+
+      
+       
+
+

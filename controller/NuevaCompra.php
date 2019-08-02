@@ -7,14 +7,31 @@
 		//2.prepara una consulta sql
 		$sql = "INSERT INTO Compra values ('','".$_POST["Cliente"]."','".$_POST["Direccion"]."','".$_POST["Credito"]."','".$_POST["txtC"]."','".$_POST["txtTotal"]."')";
 
+		
 		//3.ejecutar la consulta
 		mysqli_query($conexion, $sql) or die("ERROR: ".mysqli_error($conexion));	
 
-        $compra_id = mysqli_insert_id($conexion);
-        foreach ($_SESSION["carrito"] as $i => $registo) {
-            $sql = "INSERT INTO detalle VALUES ('', '".$compra_id."',$registro->Marca)";
-            mysqli_query($conexion, $sql);
-        }
+		$Venta_id = mysqli_insert_id($conexion);
+		//$FechaVenta 
+
+
+		require_once "../Model/Data.php";
+
+		session_start();
+
+		if(isset($_SESSION["carrito"])){
+			$carrito = $_SESSION["carrito"];
+            
+			foreach($carrito as $p){
+
+
+			$sql2 = "INSERT INTO detalle VALUES ('', '".$Venta_id."','".$p->Id."','".$p->Cantidad."','".$p->SubTotal."')";
+			mysqli_query($conexion, $sql2);
+			
+		}}
+		
+
+		
 		header("Location: ../index.html");
 
 ?>

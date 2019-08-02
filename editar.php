@@ -40,29 +40,43 @@
 
 	}
     ?>
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
 
-     <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
 
-      <a class="navbar-brand" href="index.html">BuenVino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item">
-            <a class="nav-link" href="administrador.php">Ingresar</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+<div class="container">
+
+  <a class="navbar-brand" href="index.html">BuenVino</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="NuevoVino.php">Nuevo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ListaVino.php">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="InfoVentas.php">Ventas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="InfoCliente.php">Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="administrador.php">Salir</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
 
 
         <div class="container">
-        <div id="Mostrar" class="row align-items-center">
+        <div id="Mostrar" class="row align-items-start">
+
+        <div class="col-sm-12 col-lg-6">
             	<form action="editar2.php" method="post">
                 <label>Codigo</label>
                 <input class="form-control" type="text" name="Codigo"  value="<?php echo $registro["Id"];  ?>">
@@ -83,16 +97,24 @@
                     <option>Criaza</option>
                     <option>Reserva</option>
                 </select>
-                
+              </div>
+              <div class="col-sm-12 col-lg-6">
+
                 <label>Precio</label>
                 <input class="form-control" type="text" name="Precio" value="<?php echo $registro["Precio"];  ?>">
 
+                <label>Cantidad</label>
+                <input class="form-control" type="number" name="Cantidad" value="<?php echo $registro["Cantidad"];  ?>">
+
+
                 <label>Origen</label>
                 <input class="form-control" type="text" name="Origen" value="<?php echo $registro["Origen"];  ?>">
-        
-        <input type="submit" value="Enviar">
-    </form>
-    </div>
-
+                <br>
+                
+        <input type="submit" class="btn btn-primary" value="Guardar Cambios">
+  
+                </div>
+  </form>
+</div>
 </body>
 </html>

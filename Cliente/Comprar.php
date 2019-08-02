@@ -23,9 +23,8 @@
 </head>
 
 <body>
-
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
 
       <a class="navbar-brand" href="../index.html">BuenVino</a>
@@ -35,11 +34,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Oferta del dia</a>
+            <a class="nav-link" href="../Cliente/cliente.php">Productos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Imformes</a>
-          </li>
+    
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Salir</a>
           </li>
@@ -47,6 +44,7 @@
       </div>
     </div>
   </nav>
+
 
 
 
@@ -64,10 +62,8 @@
 
       $productos = $d->getProductos();
 
-              session_start();
-              echo "<pre>";
-              print_r($_SESSION);
-              echo "</pre>";
+
+            session_start();
               if(isset($_SESSION["carrito"])){
                 $carrito = $_SESSION["carrito"];
              
@@ -124,6 +120,8 @@
                                     echo "</tr>";
                                     
                       echo "</table>";
+
+                            }
                       ?>
                      </div>
                       
@@ -131,28 +129,36 @@
                       <div class='col-sm-12 col-lg-4'>
                       <?php
 
-                      echo "<form action='../controller/NuevaCompra.php' method='post'>";
+                    //COMPRA
+                      
+                    echo "<form action='../controller/NuevaCompra.php' method='post'>";
 
-                     echo "<label>Nombre y apellido</label>";
-                      echo "<input class='form-control' type='text' name='Cliente'>";
+                    echo "<label>Nombre y apellido</label>";
+                    echo "<input class='form-control' type='text' name='Cliente'>";
 
-                      echo "<label>Direccion de Envio</label>";
-                      echo "<input class='form-control' type='text' name='Direccion'>";
+                    echo "<label>Direccion de Envio</label>";
+                    echo "<input class='form-control' type='text' name='Direccion'>";
 
-                      echo "<label>Tarjeta de Credito</label>";
-                      echo "<input class='form-control' type='text' name='Credito'>";
-           
-                      echo "<input type='hidden' name='txtId' value='$p->Id'>";
-                      echo "<input type='hidden' name='txtMarca' value='$p->Marca'>";
-                      echo "<input type='hidden' name='txtTipo' value='$p->Tipo'>";
-                      echo "<input type='hidden' name='txtClase' value='$p->Clase'>";
-                      echo "<input type='hidden' name='txtPrecio' value='$p->Precio'>";
-                      echo "<input type='hidden' name='txtC' value='$totalC'>";
-                      echo "<input type='hidden' name='txtTotal' value='$totalpago'>";
+                    echo "<label>Tarjeta de Credito</label>";
+                    echo "<input class='form-control' type='text' name='Credito'>";
+                    echo "<input type='hidden' name='txtC' value='$totalC'>";
+                    echo "<input type='hidden' name='txtTotal' value='$totalpago'>";
 
+                      //DETALLE DE LA COMPRA
+
+                   
+                 
+
+
+                    echo "<input type='hidden' name='txtId' value='$p->Id'>";
+                    echo "<input type='hidden' name='txtCantidad' value='$p->Cantidad'>";
+                    echo "<input type='hidden' name='txtPrecio' value='$p->SubTotal'>";
+
+                
+                   
 
                               echo "<br>";
-                      echo "<input type='submit' value='Enviar'>";
+                      echo "<input class='btn btn-primary'type='submit' value='Enviar'>";
 
           
           
@@ -160,7 +166,7 @@
                        echo "</form>";
 
                         
-              }
+              
               
               ?>
 

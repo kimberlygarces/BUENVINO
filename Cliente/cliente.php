@@ -35,11 +35,9 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="../index.html">Oferta del dia</a>
+          <a class="nav-link" href="../Cliente/cliente.php">Productos</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="../index.html">Imformes</a>
-          </li>
+    
           <li class="nav-item">
             <a class="nav-link" href="../index.html">Salir</a>
           </li>
@@ -48,14 +46,17 @@
     </div>
   </nav>
 
+ 
 
 
     <div class="container">
 
+  
       <div id="Mostrar"class="row align-items-start">
 
       <div class="col-sm-12 col-lg-4">
-      <img src="../img/5.jpg" alt="" class="mr-7 mt-7 rounded-circle" style="width:160px;">
+      <img src="../img/5.jpg" alt="" class="mr-7 mt-7 rounded-circle" style="width:60px;">
+      <h3>BuenVino</h3>
 
       <hr>
       <?php
@@ -79,7 +80,7 @@
                           //echo "<td>",'CLASE',"</td>";
                           echo "<td>",'PRECIO',"</td>";
                           echo "<td>",'CANTIDAD',"</td>";
-                          echo "<td>",'SUBTOTAL',"</td>";
+                          //echo "<td>",'SUBTOTAL',"</td>";
                           echo "<td>",'ELIMINAR',"</td>";
 
                           "<tr>";
@@ -97,7 +98,7 @@
                               //echo "<td>".$p->Clase."</td>";
                               echo "<td>".$p->Precio."</td>";
                               echo "<td>".$p->Cantidad."</td>";
-                              echo "<td>".$p->SubTotal."</td>";
+                              //echo "<td>".$p->SubTotal."</td>";
                               echo "<td>";
                               echo "<a href='../controller/eliminarCarrito.php?in=$i'>",'ELIMINAR',"</a>";
                               echo"</td>";
@@ -115,86 +116,21 @@
                                   echo "</tr>";
                       
                       echo "</table>";
-
-
-                          
-
               }
+     
               
               ?>
-            <a href="Comprar.php" class="btn btn-primary btn-xl rounded-pill mt-5">Comprar</a>
+                      <a href="Comprar.php" class="btn btn-primary btn-xl rounded-pill mt-5"><img src="../img/carrito.png" alt="">Carrito</a>
+
 
             </div>
 
+            <div class="col-sm-12 col-lg-1">
+
+            </div>
       
-      
-            <div class="col-sm-12 col-lg-8">
-  <!-- 
-            <h3>Productos Disponibles</h3>
-
-              <table class="table table-striped">
-
-              <thead>
-              <th>N</th>
-              <th>Id</th>
-              <th>Marca</th>
-              <th>Tipo</th>
-              <th>Clase</th>
-              <th>Precio</th>
-              <th>Agregar</th>
-              </thead>
-
-              <tbody>
-              -->
-
-              
-            <?php
-
-            /*
-  
-            require_once "../Model/Data.php";
-
-            $d = new Data();
-
-            $productos = $d->getProductos();
-
-            foreach($productos as $p){
-
-            echo "<tr>";
-              echo "<td>","<img src='../img/2.jpg' alt='' class='mr-3 mt-3 rounded-circle' style='width:30px;'>","</td>";
-              echo "<td>".$p->Id."</td>";
-              echo "<td>".$p->Tipo."</td>";
-              echo "<td>".$p->Marca."</td>";
-              echo "<td>".$p->Clase."</td>";
-              echo "<td>".$p->Precio."</td>";
-              echo "<td>";
-
-
-            echo "<form action='../controller/carrito.php' method='post'>";
-            echo "<input type='hidden' name='txtId' value='$p->Id'>";
-            echo "<input type='hidden' name='txtMarca' value='$p->Marca'>";
-            echo "<input type='hidden' name='txtTipo' value='$p->Tipo'>";
-            echo "<input type='hidden' name='txtClase' value='$p->Clase'>";
-            echo "<input type='hidden' name='txtPrecio' value='$p->Precio'>";
-
-            echo "<input type='number' name='txtCantidad'>";
-            echo "<input type='submit' name='btnAnadir' value='Añadir'>";
-            echo "</td>";
-
-            echo "</tr>";
-            echo "</form>";
-            }
-
-            </tbody>
-            </table>
-            </div>
-            
-            </div>
-              */
-            ?>
-
-
-            
+            <div class="col-sm-12 col-lg-7">
+   
 
             <h3>Productos Disponibles</h3>
 
@@ -204,8 +140,8 @@
             <th>N</th>
             <th>Id</th>
             <th>Marca</th>
-            <th>Tipo</th>
-            <th>Clase</th>
+            <!--<th>Tipo</th>-->
+            <!--<th>Clase</th>-->
             <th>Precio</th>
             <th>Agregar</th>
             </thead>
@@ -214,6 +150,7 @@
               
 
             <?php
+         
             require_once "../Model/Data.php";
 
             $d = new Data();
@@ -223,16 +160,35 @@
             foreach($productos as $p){
 
               echo "<tr>";
-                echo "<td>","<img src='../img/2.jpg' alt='' class='mr-3 mt-3 rounded-circle' style='width:30px;'>","</td>";
+
+           
+                
+                if(("$p->Oferta")=="1"){
+                  echo "<td>","<img src='../img/sale2.png' alt='' class='mr-3 mt-3 rounded-circle'>","</td>";
+
+                }else{
+                  echo "<td>","<img src='../img/2.jpg' alt='' class='mr-3 mt-3 rounded-circle' style='width:50px;'>","</td>";
+
+
+                };
+
+              
                 echo "<td>".$p->Id."</td>";
-                $imagen='';
-                if($p->oferta=='1'){
-                  $imagen='<img src="img/oferta.png"';
-                }
-                echo "<td>".$p->Tipo."</td>";
-                echo "<td>".$imagen.$p->Marca."</td>";
-                echo "<td>".$p->Clase."</td>";
-                echo "<td>".$p->Precio."</td>";
+                $SALE = $p->Precio/2;
+              
+                echo "<td>".$p->Marca."</td>";
+                //echo "<td>".$p->Tipo."</td>";
+              //  echo "<td>".$p->Clase."</td>";
+                if(("$p->Oferta")=="1"){
+                
+                  echo "<td>","<s>","$($p->Precio)","</s>","<font color='red'>"," $$SALE","</font>","</td>";
+
+                }else{
+                echo "<td>","$$p->Precio","</td>";
+
+
+                };
+
                 echo "<td>";
 
 
@@ -243,27 +199,30 @@
             echo "<input type='hidden' name='txtClase' value='$p->Clase'>";
             echo "<input type='hidden' name='txtPrecio' value='$p->Precio'>";
 
-            echo "<input type='number' name='txtCantidad'>";
-            echo "<input type='submit' name='btnAnadir' value='Añadir'>";
+       
+            echo "<input placeholder='0' required type='number' value='' name='txtCantidad' min='1' max='$p->Cantidad'/>";
+   
+            echo "<td>";
+            echo "<input type='submit' name='btnAnadir' value='Añadir' class='btn btn-warning'/>";
             echo "</td>";
 
               echo "</tr>";
              echo "</form>";
           }
 
-          ?>
+          
 
+          ?>
 
         </tbody>
         </table>
+
+
         </div>
         </div>
       
-        
-
-
-
-      <!-- Bootstrap core JavaScript -->
+  
+          <!-- Bootstrap core JavaScript -->
       <script src="vendor/jquery/jquery.min.js"></script>
         <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

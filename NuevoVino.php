@@ -26,26 +26,48 @@
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
-    <div class="container">
-
-      <a class="navbar-brand" href="index.html">BuenVino</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item">
-            <a class="nav-link" href="administrador.php">Ingresar</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
 
-        <div class="container">
-        <div id="Mostrar" class="row align-items-center">
+<div class="container">
+<img src="../img/5.jpg" alt="" class="mr-7 mt-7 rounded-circle" style="width:60px;">
+
+
+  <a class="navbar-brand" href="index.html">BuenVino</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="NuevoVino.php">Nuevo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="ListaVino.php">Productos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="InfoVentas.php">Ventas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="InfoCliente.php">Clientes</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="administrador.php">Salir</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</nav>
+
+
+        <div class="container"  id="Mostrar">
+        <img src="img/mas.png" alt="" class="mr-7 mt-7 rounded-circle" style="width:60px;">
+
+          <h2>Nuevos productos </h2>
+        <hr>
+        <div class="row align-items-start">
+
+        <div class="col-sm-12 col-lg-6">
+
         <form action="NuevoVino2.php" method="post" class="form-group">
             
                 
@@ -68,24 +90,28 @@
                     <option>Criaza</option>
                     <option>Reserva</option>
                 </select>
-                
+                </div>
+              <div class="col-sm-12 col-lg-6">
                 <label>Precio</label>
                 <input class="form-control" type="text" name="Precio">
 
                 <label>Origen</label>
                 <input class="form-control" type="text" name="Origen">
 
-             
-        
-            </div>
-                <input type="submit" value="Enviar">
+                <label>Cantidad</label>
+                <input class="form-control" type="number" name="Cantidad">
+
+                
+                <input type='hidden' name='Oferta' value="0">
+
+                <br>
+                 <input type="submit" class="btn btn-primary" value="Agregar">
 
                   
                     </div> 
             </form>      
     </div>
-            </div>
-            </div>
+            
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
