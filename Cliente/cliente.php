@@ -80,8 +80,8 @@
                           //echo "<td>",'CLASE',"</td>";
                           echo "<td>",'PRECIO',"</td>";
                           echo "<td>",'CANTIDAD',"</td>";
-                          //echo "<td>",'SUBTOTAL',"</td>";
-                          echo "<td>",'ELIMINAR',"</td>";
+                          echo "<td>",'SUBTOTAL',"</td>";
+                         // echo "<td>",'ELIMINAR',"</td>";
 
                           "<tr>";
 
@@ -98,9 +98,10 @@
                               //echo "<td>".$p->Clase."</td>";
                               echo "<td>".$p->Precio."</td>";
                               echo "<td>".$p->Cantidad."</td>";
-                              //echo "<td>".$p->SubTotal."</td>";
+                              
+                              echo "<td>".$p->SubTotal."</td>";
                               echo "<td>";
-                              echo "<a href='../controller/eliminarCarrito.php?in=$i'>",'ELIMINAR',"</a>";
+                              //echo "<a href='../controller/eliminarCarrito.php?in=$i'>",'ELIMINAR',"</a>";
                               echo"</td>";
 
 
@@ -179,6 +180,7 @@
                 echo "<td>".$p->Marca."</td>";
                 //echo "<td>".$p->Tipo."</td>";
               //  echo "<td>".$p->Clase."</td>";
+
                 if(("$p->Oferta")=="1"){
                 
                   echo "<td>","<s>","$($p->Precio)","</s>","<font color='red'>"," $$SALE","</font>","</td>";
